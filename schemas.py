@@ -10,7 +10,7 @@ tools = [
         "type": "function",
         "function": {
             "name": "get_exchange_rate",
-            "description": "Get exchange rate for currency pair",
+            "description": "Returns the exchange rate for exactly one currency pair.",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -29,7 +29,7 @@ tools = [
         "type": "function",
         "function": {
             "name": "get_stock_price",
-            "description": "Get stock price",
+            "description": "Returns the current stock price for exactly one stock symbol.",
             "parameters": {
                 "type": "object",
                 "properties": {
