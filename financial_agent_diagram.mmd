@@ -1,0 +1,20 @@
+flowchart TD
+    A[Start main.py] --> B[Import run_agent from agent]
+    B --> C[Call run_agent()]
+    C --> D[Load .env and API key in agent.py]
+    D --> E[Import available_functions from functions]
+    E --> F[Import tools from schemas]
+    F --> G[Initialize messages with system prompt]
+    G --> H{User input}
+    H -- exit/quit --> I[End]
+    H --> J[Append user message to messages]
+    J --> K[First API call with tools]
+    K --> L{Tool calls present?}
+    L -- yes --> M[Append tool call to messages]
+    M --> N[For each tool call: Invoke function via map]
+    N --> O[Append tool result to messages]
+    O --> P[Second API call for final answer]
+    P --> Q[Print final answer]
+    Q --> H
+    L -- no --> R[Print response directly]
+    R --> H

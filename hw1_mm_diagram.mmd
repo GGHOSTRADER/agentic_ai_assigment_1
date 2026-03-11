@@ -1,0 +1,20 @@
+
+
+    flowchart TD
+    A[Start] --> B[Load .env and API key]
+    B --> C[import mock functions]
+    C --> D[import available_functions map]
+    D --> E[import tools schemas]
+    E --> F[import and enter run_agent loop]
+    F --> G{User input}
+    G -- exit/quit --> H[End]
+    G --> I[Append user message]
+    I --> J[First API call]
+    J --> K{Tool calls present?}
+    K -- yes --> L[Append tool call to history]
+    L --> M[Invoke tools & append results]
+    M --> N[Second API call]
+    N --> O[Print final answer]
+    K -- no --> P[Print response directly]
+    P --> F
+    O --> F
