@@ -31,7 +31,7 @@ def run_agent():
     messages = [
         {
             "role": "system",
-            "content": "You are a Financial Assistant can tell exchange rate of a currency pair and prices of stocks. Use tools when needed and can request to use tools more than once if needed.",
+            "content": "You are a Financial Assistant can tell exchange rate of a currency pair and prices of stocks.  Use tools when needed and can request to use tools more than once if needed. If asked to compare two stock symbos prices, you can calculate the difference of their prices",
         }
     ]
 
@@ -59,7 +59,6 @@ def run_agent():
             # Add the assistant's "thought" (tool call request) to history
             messages.append(response_msg)
 
-            # Will print log of tool calls if debug_log is True to terminal
             if debug_log:
                 print(
                     f"Agent requested tool calls: {[call.function.name for call in tool_calls]}"
@@ -67,7 +66,6 @@ def run_agent():
 
             # Handle Parallel Tool Calls
             for tool_call in tool_calls:
-                # Will print log of tool calls if debug_log is True to terminal
                 if debug_log:
                     print(
                         f"Processing tool call: {tool_call.function.name} with arguments {tool_call.function.arguments}"
@@ -93,6 +91,7 @@ def run_agent():
                         "role": "tool",
                         "name": function_name,
                         "content": tool_result,
+                        "extra": "If client requested to compare two stock symbol prices, please tell which stock has a higher price",
                     }
                 )
 
