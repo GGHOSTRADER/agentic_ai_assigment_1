@@ -13,7 +13,7 @@ from functions import available_functions
 from schemas import tools
 
 
-debug_log = False
+debug_log = False  # This flag can be toggled to enable/disable debug logging for tool calls and responses.
 
 
 def run_agent():
@@ -59,6 +59,7 @@ def run_agent():
             # Add the assistant's "thought" (tool call request) to history
             messages.append(response_msg)
 
+            # Will print log of tool calls if debug_log is True to terminal
             if debug_log:
                 print(
                     f"Agent requested tool calls: {[call.function.name for call in tool_calls]}"
@@ -66,6 +67,7 @@ def run_agent():
 
             # Handle Parallel Tool Calls
             for tool_call in tool_calls:
+                # Will print log of tool calls if debug_log is True to terminal
                 if debug_log:
                     print(
                         f"Processing tool call: {tool_call.function.name} with arguments {tool_call.function.arguments}"
